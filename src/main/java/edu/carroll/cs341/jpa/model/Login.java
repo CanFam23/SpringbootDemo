@@ -23,6 +23,19 @@ public class Login {
     @Column(name = "password", nullable = false)
     private String hashedPassword;
 
+    public Login() {
+    }
+
+    public Login(String username, String rawPassword) {
+        this.username = username;
+        setRawPassword(rawPassword);
+    }
+
+    public void setRawPassword(String rawPassword) {
+        // XXX - This should *NEVER* be done in a real project
+        this.hashedPassword = Integer.toString(rawPassword.hashCode());
+    }
+
     public Integer getId() {
         return id;
     }
